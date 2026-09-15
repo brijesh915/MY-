@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Jaipur Car Rent | Swift Car Rental in Jaipur</title>
+  <meta name="description" content="Jaipur Car Rent - Rent a Maruti Swift in Jaipur for ₹2500 per 24 hours. Easy booking and quick service.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0b0b;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.94);
+      border-bottom: 1px solid #252525;
+    }
+
+    .nav-container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 17px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: #ffc107;
+      font-size: 25px;
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: .3s;
+    }
+
+    .nav-links a:hover {
+      color: #ffc107;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 27px;
+      cursor: pointer;
+      color: white;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 20px 50px;
+      background:
+        linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.82)),
+        linear-gradient(135deg, #1b1b1b, #050505);
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .yellow {
+      color: #ffc107;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #ddd;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 6px;
+      transition: .3s;
+    }
+
+    .btn-yellow {
+      background: #ffc107;
+      color: #111;
+    }
+
+    .btn-yellow:hover {
+      background: #ffda55;
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      border: 2px solid #ffc107;
+      color: #ffc107;
+    }
+
+    .btn-outline:hover {
+      background: #ffc107;
+      color: #111;
+    }
+
+    /* COMMON */
+    section {
+      padding: 85px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 38px;
+      margin-bottom: 45px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+
+    .about-box {
+      background: #171717;
+      border: 1px solid #292929;
+      border-radius: 15px;
+      padding: 30px;
+    }
+
+    .about-box h3 {
+      color: #ffc107;
+      margin-bottom: 12px;
+    }
+
+    /* CAR */
+    .car-section {
+      background: #111;
+    }
+
+    .car-card {
+      max-width: 600px;
+      margin: auto;
+      background: #191919;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #303030;
+      box-shadow: 0 15px 40px rgba(0,0,0,.35);
+    }
+
+    .car-image {
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #252525, #0e0e0e);
+      color: #888;
+      font-size: 20px;
+    }
+
+    .car-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .car-info {
+      padding: 25px;
+    }
+
+    .car-info h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #ffc107;
+      font-size: 30px;
+      font-weight: 800;
+      margin: 10px 0 18px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: #ddd;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service {
+      background: #171717;
+      padding: 30px 22px;
+      border-radius: 14px;
+      text-align: center;
+      border: 1px solid #292929;
+      transition: .3s;
+    }
+
+    .service:hover {
+      transform: translateY(-7px);
+      border-color: #ffc107;
+    }
+
+    .service .icon {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    .service h3 {
+      margin-bottom: 10px;
+      color: #ffc107;
+    }
+
+    .service p {
+      color: #bbb;
+    }
+
+    /* BOOKING */
+    .booking {
+      background: #ffc107;
+      color: #111;
+    }
+
+    .booking .section-title {
+      color: #111;
+    }
+
+    form {
+      max-width: 650px;
+      margin: auto;
+      background: #111;
+      padding: 30px;
+      border-radius: 15px;
+      color: white;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 13px;
+      border-radius: 7px;
+      border: 1px solid #444;
+      background: #1e1e1e;
+      color: white;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: #ffc107;
+      color: #111;
+      border: none;
+      border-radius: 7px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #ffda55;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .contact-card {
+      text-align: center;
+      background: #171717;
+      padding: 28px;
+      border-radius: 14px;
+      border: 1px solid #292929;
+    }
+
+    .contact-card h3 {
+      color: #ffc107;
+      margin-bottom: 8px;
+    }
+
+    .contact-card a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      background: #050505;
+      color: #999;
+      border-top: 1px solid #222;
+    }
+
+    /* WHATSAPP */
+    .whatsapp {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 58px;
+      height: 58px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 29px;
+      text-decoration: none;
+      z-index: 2000;
+      box-shadow: 0 5px 20px rgba(0,0,0,.4);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background: #080808;
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .about-grid,
+      .services-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      section {
+        padding: 65px 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">JAIPUR CAR RENT</div>
+
+      <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#cars">Cars</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#booking">Booking</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+
+      <h1>
+        Jaipur <span class="yellow">Car Rent</span>
+      </h1>
+
+      <p>
+        Jaipur mein comfortable aur affordable car rental service.
+        Maruti Swift sirf ₹2500 / 24 Hours.
+      </p>
+
+      <a href="#booking" class="btn btn-yellow">
+        🚗 Book Your Car
+      </a>
+
+      <a href="tel:7568544067" class="btn btn-outline">
+        📞 Call Now
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+
+      <h2 class="section-title">
+        About <span class="yellow">Us</span>
+      </h2>
+
+      <div class="about-grid">
+
+        <div class="about-text">
+          <p>
+            Welcome to <strong>Jaipur Car Rent</strong>. Hum Jaipur mein
+            reliable aur affordable car rental service provide karte hain.
+          </p>
+
+          <p>
+            Hamari Maruti Swift car family trips, business travel,
+            local travel aur Jaipur sightseeing ke liye ek comfortable
+            option hai.
+          </p>
+
+          <p>
+            Simple booking, transparent pricing aur friendly service
+            hamari priority hai.
+          </p>
+        </div>
+
+        <div class="about-box">
+          <h3>Why Choose Jaipur Car Rent?</h3>
+
+          <p>✓ Affordable Price</p>
+          <p>✓ Clean & Comfortable Car</p>
+          <p>✓ Easy Booking</p>
+          <p>✓ Jaipur Local Service</p>
+          <p>✓ Quick Response</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CAR -->
+  <section class="car-section" id="cars">
+    <div class="container">
+
+      <h2 class="section-title">
+        Our <span class="yellow">Car</span>
+      </h2>
+
+      <div class="car-card">
+
+        <div class="car-image">
+          <!--
+            Apni Swift ki photo lagane ke liye:
+            1. swift.jpg naam ki photo isi folder mein rakhein
+            2. Neeche wali img line mein style="display:block" karein
+          -->
+          <span>🚗 Swift Car Image</span>
+          <img src="swift.jpg" alt="Maruti Swift Rental Car">
+        </div>
+
+        <div class="car-info">
+
+          <h3>Maruti Swift</h3>
+
+          <p>Comfortable • Reliable • Perfect for Jaipur Travel</p>
+
+          <div class="price">₹2,500 <small>/ 24 Hours</small></div>
+
+          <div class="features">
+            <div>✓ Comfortable Seats</div>
+            <div>✓ AC</div>
+            <div>✓ Clean Car</div>
+            <div>✓ Easy Booking</div>
+          </div>
+
+          <a
+            class="btn btn-yellow"
+            href="https://wa.me/917568544067?text=Hello%20Jaipur%20Car%20Rent%2C%20mujhe%20Swift%20book%20karni%20hai."
+            target="_blank">
+            💬 Book on WhatsApp
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+
+      <h2 class="section-title">
+        Our <span class="yellow">Services</span>
+      </h2>
+
+      <div class="services-grid">
+
+        <div class="service">
+          <div class="icon">🚗</div>
+          <h3>Car Rental</h3>
+          <p>
+            Comfortable Swift car rental at an affordable price.
+          </p>
+        </div>
+
+        <div class="service">
+          <div class="icon">💰</div>
+          <h3>Affordable Price</h3>
+          <p>
+            Swift rental starting at ₹2500 for 24 hours.
+          </p>
+        </div>
+
+        <div class="service">
+          <div class="icon">📱</div>
+          <h3>Easy Booking</h3>
+          <p>
+            Call or WhatsApp us for quick booking.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking" id="booking">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Book Your <span class="yellow">Car</span>
+      </h2>
+
+      <form id="bookingForm">
+
+        <div class="form-group">
+          <label>Your Name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            placeholder="Enter phone number"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Car</label>
+          <select id="car">
+            <option>Maruti Swift</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Booking Date</label>
+          <input
+            type="date"
+            id="date"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Message</label>
+          <textarea
+            id="message"
+            placeholder="Any special requirement?"></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          Send Booking Request on WhatsApp
+        </button>
+
+      </form>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+
+    <div class="container">
+
+      <h2 class="section-title">
+        Contact <span class="yellow">Us</span>
+      </h2>
+
+      <div class="contact-grid">
+
+        <div class="contact-card">
+          <h3>📞 Phone</h3>
+          <a href="tel:7568544067">
+            7568544067
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <h3>💬 WhatsApp</h3>
+          <a
+            href="https://wa.me/917568544067"
+            target="_blank">
+            Chat With Us
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <h3>📍 Location</h3>
+          <p>Jaipur, Rajasthan</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      © <span id="year"></span> Jaipur Car Rent. All Rights Reserved.
+    </p>
+  </footer>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a
+    class="whatsapp"
+    href="https://wa.me/917568544067?text=Hello%20Jaipur%20Car%20Rent%2C%20mujhe%20car%20rent%20par%20chahiye."
+    target="_blank"
+    aria-label="WhatsApp">
+    ☎
+  </a>
+
+  <script>
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    // Close menu after clicking link
+    document.querySelectorAll(".nav-links a").forEach(function(link) {
+      link.addEventListener("click", function() {
+        document.getElementById("navLinks").classList.remove("active");
+      });
+    });
+
+    // Current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Booking form -> WhatsApp
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const car = document.getElementById("car").value;
+      const date = document.getElementById("date").value;
+      const message = document.getElementById("message").value;
+
+      const whatsappMessage =
+        "🚗 *Jaipur Car Rent - Booking Request*%0A%0A" +
+        "👤 Name: " + encodeURIComponent(name) + "%0A" +
+        "📞 Phone: " + encodeURIComponent(phone) + "%0A" +
+        "🚗 Car: " + encodeURIComponent(car) + "%0A" +
+        "📅 Date: " + encodeURIComponent(date) + "%0A" +
+        "📝 Message: " + encodeURIComponent(message);
+
+      window.open(
+        "https://wa.me/917568544067?text=" + whatsappMessage,
+        "_blank"
+      );
+
+    });
+
+  </script>
+
+</body>
+</html>
